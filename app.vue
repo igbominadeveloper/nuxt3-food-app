@@ -9,6 +9,7 @@ const { data: recipe } = await useFetch<Recipe>('/api/recipes');
     v-if="recipe"
     class="max-w-md bg-white mx-auto max-h-dvh overflow-hidden text-black"
   >
+    <page-header />
     <pre class="font-mono">
       {{ recipe }}
     </pre>
