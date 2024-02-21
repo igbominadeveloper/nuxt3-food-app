@@ -17,4 +17,7 @@ export default defineNuxtConfig({
       },
     },
   },
+  tailwindcss: {
+    editorSupport: true,
+  },
 });
