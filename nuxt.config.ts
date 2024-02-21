@@ -7,4 +7,14 @@ export default defineNuxtConfig({
       apiKey: '',
     },
   },
+  $development: {
+    nitro: {
+      storage: {
+        recipes: {
+          driver: 'fs',
+          base: 'recipes',
+        },
+      },
+    },
+  },
 });

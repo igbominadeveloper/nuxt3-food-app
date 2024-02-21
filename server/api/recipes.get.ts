@@ -51,8 +51,8 @@ const recipeSchema = v.object({
   readyInMinutes: v.number(),
   servings: v.number(),
   sourceUrl: v.nullable(v.string()),
-  image: v.string(),
-  imageType: v.string(),
+  image: v.optional(v.string()),
+  imageType: v.optional(v.string()),
   summary: v.string(),
   cuisines: v.array(v.string()),
   dishTypes: v.array(v.string()),
@@ -93,21 +93,31 @@ const recipeSchema = v.object({
 
 type Receipe = v.Output<typeof recipeSchema>;
 
-export default defineEventHandler(async (event) => {
-  const { recipes } = await $fetch<{ recipes: Receipe[] }>(
-    'https://api.spoonacular.com/recipes/random',
-    {
-      query: {
-        limitLicense: true,
-        number: 10,
-        apiKey: useRuntimeConfig().spoonacular.apiKey,
-      },
-    }
-  );
+export default defineCachedFunction(
+  async () => {
+    console.log('Running the function now');
+    const { recipes } = await $fetch<{ recipes: Receipe[] }>(
+      'https://api.spoonacular.com/recipes/random',
+      {
+        query: {
+          limitLicense: true,
+          number: 10,
+          apiKey: useRuntimeConfig().spoonacular.apiKey,
+        },
+      }
+    );
 
-  try {
-    return v.parse(v.array(recipeSchema), recipes);
-  } catch (error) {
-    console.log(error.issues.map((issue) => issue.path));
+    try {
+      return v.parse(v.array(recipeSchema), recipes);
+    } catch (error) {
+      console.log(error.issues.map((issue) => issue.path));
+    }
+  },
+  {
+    maxAge: 60 * 60 * 24 * 1000,
+    swr: true,
+    name: 'recipes',
+    getKey: () => 'recipes',
+    shouldBypassCache: () => false,
   }
-});
+);
