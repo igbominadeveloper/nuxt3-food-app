@@ -17,7 +17,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  tailwindcss: {
-    editorSupport: true,
+  imports: {
+    dirs: ['./enums'],
   },
 });

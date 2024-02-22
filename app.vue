@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { type Recipe } from '~/schema/recipe';
+import { NavigationLink } from '~/enums';
 
 const { data: recipe } = await useFetch<Recipe>('/api/recipes');
+
+const activeLink = ref(NavigationLink.Ingredients);
+const links = [NavigationLink.Ingredients, NavigationLink.Instructions];
+
+const ingredients = resolveComponent('ingredients');
+const instructions = resolveComponent('instructions');
 </script>
 
 <template>
@@ -55,20 +62,37 @@ const { data: recipe } = await useFetch<Recipe>('/api/recipes');
           :key="label"
           :label="label"
           variant="outline"
-          color="lightgray"
           size="md"
           class="hover:animate-pulse"
         />
       </section>
     </row>
 
-    <row title="Ready (min.)">
+    <row>
       <div class="flex gap-1 items-center">
-        <Icon name="ph:clock" class="size-6 animate-pulse text-green-600" />{{
-          recipe.readyInMinutes
-        }}
+        <Icon
+          name="ph:cooking-pot"
+          class="size-6 animate-pulse text-red-600"
+        />{{ recipe.readyInMinutes }} min.
       </div>
     </row>
+
+    <section>
+      <navigation-links
+        :links="links"
+        :active-link="activeLink"
+        @selected="(link:NavigationLink) => activeLink = link"
+      />
+
+      <!-- ingredients -->
+      <component
+        :is="
+          activeLink === NavigationLink.Ingredients ? ingredients : instructions
+        "
+        :ingredients="recipe.extendedIngredients"
+        :instructions="recipe.analyzedInstructions"
+      />
+    </section>
 
     <pre class="font-mono">
       {{ recipe }}
