@@ -11,5 +11,8 @@ withDefaults(
 </script>
 
 <template>
-  <NuxtImg :src="imageUrl" :alt="alt" />
+  <NuxtImg :src="imageUrl" :alt="alt" v-if="imageUrl" />
+  <div class="bg-black text-white grid place-items-center" v-else>
+    Recipe image
+  </div>
 </template>
