@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NavigationLink } from '~/enums';
+import { NavigationLink } from '~/utils/enums';
 
 defineProps<{
   links: NavigationLink[];
@@ -29,3 +29,4 @@ const emit = defineEmits<{
     </ul>
   </row>
 </template>
+~/utils/enums

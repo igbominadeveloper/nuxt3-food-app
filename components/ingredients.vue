@@ -7,15 +7,20 @@ defineProps<{
 </script>
 
 <template>
-  <row>
-    <div class="flex text-gray-500 items-center justify-between">
+  <section-row>
+    <row
+      direction="row"
+      class="flex text-gray-500 items-center justify-between my-0 px-0"
+    >
       <h1>Ingredients ({{ ingredients.length }} items)</h1>
       <p>Quantity</p>
-    </div>
+    </row>
+
+    <div class=""></div>
 
     <pre>
           {{ ingredients }}
       </pre
     >
-  </row>
+  </section-row>
 </template>

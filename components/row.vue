@@ -2,19 +2,23 @@
 withDefaults(
   defineProps<{
     title?: string;
+    direction?: 'col' | 'row';
   }>(),
   {
     title: '',
+    direction: 'col',
   }
 );
 </script>
+
 <template>
-  <div class="flex my-4 px-4 flex-col gap-2">
-    <h1 class="text-md">
-      <slot name="title" :title="title">
-        {{ title }}
-      </slot>
-    </h1>
+  <div
+    class="flex gap-2"
+    :class="{
+      'flex-col': direction === 'col',
+      'flex-row': direction !== 'col',
+    }"
+  >
     <slot />
   </div>
 </template>

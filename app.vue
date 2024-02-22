@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type Recipe } from '~/schema/recipe';
-import { NavigationLink } from '~/enums';
+import { NavigationLink } from '~/utils/enums';
 
 const { data: recipe } = await useFetch<Recipe>('/api/recipes');
 
@@ -33,15 +33,15 @@ const instructions = resolveComponent('instructions');
       />
     </section>
 
-    <row>
+    <section-row>
       <h1 class="text-xl font-semibold">
         {{ recipe.title }}
       </h1>
       <span v-html="recipe.summary"> </span>
-    </row>
+    </section-row>
 
     <!-- Dish types -->
-    <row title="Diets" v-if="recipe.diets.length">
+    <section-row title="Diets" v-if="recipe.diets.length">
       <section class="flex gap-2 flex-wrap">
         <UBadge
           v-for="label in recipe.diets"
@@ -52,10 +52,10 @@ const instructions = resolveComponent('instructions');
           size="md"
         />
       </section>
-    </row>
+    </section-row>
 
     <!-- Diets -->
-    <row title="Dish types" v-if="recipe.dishTypes.length">
+    <section-row title="Dish types" v-if="recipe.dishTypes.length">
       <section class="flex gap-2 flex-wrap">
         <UBadge
           v-for="label in recipe.dishTypes"
@@ -66,16 +66,16 @@ const instructions = resolveComponent('instructions');
           class="hover:animate-pulse"
         />
       </section>
-    </row>
+    </section-row>
 
-    <row>
+    <section-row>
       <div class="flex gap-1 items-center">
         <Icon
           name="ph:cooking-pot"
           class="size-6 animate-pulse text-red-600"
         />{{ recipe.readyInMinutes }} min.
       </div>
-    </row>
+    </section-row>
 
     <section>
       <navigation-links
@@ -99,3 +99,4 @@ const instructions = resolveComponent('instructions');
     </pre>
   </div>
 </template>
+~/utils/enums
