@@ -68,13 +68,11 @@ const instructions = resolveComponent('instructions');
       </section>
     </section-row>
 
-    <section-row>
-      <div class="flex gap-1 items-center">
-        <Icon
-          name="ph:cooking-pot"
-          class="size-6 animate-pulse text-red-600"
-        />{{ recipe.readyInMinutes }} min.
-      </div>
+    <section-row direction="row">
+      <icons
+        :ready-in-minutes="recipe.readyInMinutes"
+        :likes="recipe.aggregateLikes"
+      />
     </section-row>
 
     <section>
