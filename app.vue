@@ -21,41 +21,11 @@ const instructions = resolveComponent('instructions');
       title="header"
       class="sticky w-full top-0 z-10 bg-white shadow-sm shadow-gray-100"
     >
-      <page-header />
+      <page-header>{{ recipe.title }}</page-header>
     </section>
-
-    <!-- Image -->
-    <section title="image-banner" class="w-full h-60">
-      <base-image
-        :image-url="recipe.image"
-        alt="image-banner"
-        class="object-cover h-full w-full"
-      />
-    </section>
-
-    <section-row>
-      <h1 class="text-xl font-semibold">
-        {{ recipe.title }}
-      </h1>
-      <span v-html="recipe.summary"> </span>
-    </section-row>
-
-    <!-- Dish types -->
-    <section-row title="Diets" v-if="recipe.diets.length">
-      <section class="flex gap-2 flex-wrap">
-        <UBadge
-          v-for="label in recipe.diets"
-          :key="label"
-          :label="label"
-          variant="outline"
-          color="green"
-          size="md"
-        />
-      </section>
-    </section-row>
 
     <!-- Diets -->
-    <section-row title="Dish types" v-if="recipe.dishTypes.length">
+    <section-row v-if="recipe.dishTypes.length">
       <section class="flex gap-2 flex-wrap">
         <UBadge
           v-for="label in recipe.dishTypes"
@@ -68,10 +38,24 @@ const instructions = resolveComponent('instructions');
       </section>
     </section-row>
 
+    <!-- Image -->
+    <section title="image-banner" class="w-full h-60">
+      <base-image
+        :image-url="recipe.image"
+        alt="image-banner"
+        class="object-cover h-full w-full"
+      />
+    </section>
+
+    <section-row>
+      <div v-html="recipe.summary" class="max-w-[40ch]" />
+    </section-row>
+
     <section-row direction="row">
       <icons
         :ready-in-minutes="recipe.readyInMinutes"
         :likes="recipe.aggregateLikes"
+        :health-score="recipe.healthScore"
       />
     </section-row>
 

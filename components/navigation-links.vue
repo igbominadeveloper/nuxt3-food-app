@@ -12,7 +12,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <row class="mt-8 px-2 border-b border-b-gray-400">
+  <row class="px-2 border-b border-b-gray-400">
     <ul class="flex items-center gap-4">
       <li
         class="capitalize py-3 px-1 cursor-pointer w-max border-b-2 hover:border-b-black hover:opacity-100 rounded-sm"

@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import { type Ingredient } from '~/schema/recipe';
+import { Measure } from '~/utils/enums';
 
-defineProps<{
-  ingredients: Ingredient[];
-}>();
+withDefaults(
+  defineProps<{
+    ingredients: Ingredient[];
+    measure?: Measure;
+  }>(),
+  {
+    measure: Measure.US,
+  }
+);
 </script>
 
 <template>
@@ -16,7 +23,7 @@ defineProps<{
       <p>Quantity</p>
     </row>
 
-    <div class="flex flex-col px-2 gap-4">
+    <div class="flex flex-col px-2 gap-4 mt-2">
       <row
         direction="row"
         class="justify-between"

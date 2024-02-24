@@ -8,6 +8,8 @@
     >
       <Icon name="material-symbols:chevron-left" class="size-8" />
     </UButton>
-    <span class="text-lg capitalize">Recipe Details</span>
+    <span class="text-lg capitalize">
+      <slot />
+    </span>
   </header>
 </template>

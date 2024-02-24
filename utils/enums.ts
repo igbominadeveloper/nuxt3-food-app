@@ -3,4 +3,9 @@ enum NavigationLink {
   Ingredients = 'ingredients',
 }
 
-export { NavigationLink };
+enum Measure {
+  US = 'us',
+  Metric = 'metric',
+}
+
+export { NavigationLink, Measure };
