@@ -1,7 +1,7 @@
 <template>
   <header class="flex justify-center items-center w-full p-3 py-5 relative">
     <UButton
-      class="absolute left-4 hover:bg-black hover:text-white"
+      class="absolute left-1 hover:bg-black hover:text-white"
       size="2xs"
       variant="ghost"
       color="black"

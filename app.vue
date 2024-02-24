@@ -7,8 +7,8 @@ const { data: recipe } = await useFetch<Recipe>('/api/recipes');
 const activeLink = ref(NavigationLink.Ingredients);
 const links = [NavigationLink.Ingredients, NavigationLink.Instructions];
 
-const ingredients = resolveComponent('ingredients');
-const instructions = resolveComponent('instructions');
+const Ingredients = resolveComponent('ingredients');
+const Instructions = resolveComponent('instructions');
 </script>
 
 <template>
@@ -69,7 +69,7 @@ const instructions = resolveComponent('instructions');
       <!-- ingredients -->
       <component
         :is="
-          activeLink === NavigationLink.Ingredients ? ingredients : instructions
+          activeLink === NavigationLink.Ingredients ? Ingredients : Instructions
         "
         :ingredients="recipe.extendedIngredients"
         :instructions="recipe.analyzedInstructions"

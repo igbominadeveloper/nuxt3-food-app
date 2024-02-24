@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <div class="flex gap-1 items-center">
-    <Icon name="ph:cooking-pot" class="size-5 animate-pulse text-red-600" />{{
+    <Icon name="ph:cooking-pot" class="size-5 animate-pulse text-amber-600" />{{
       readyInMinutes
     }}
     min.
@@ -20,7 +20,7 @@ defineProps<{
     />{{ likes }}
   </div>
   <div class="flex gap-1 items-center">
-    <Icon name="ic:twotone-health-and-safety" class="size-5 text-red-600" />{{
+    <Icon name="ic:twotone-health-and-safety" class="size-5 text-green-600" />{{
       likes
     }}
   </div>

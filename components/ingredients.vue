@@ -17,7 +17,7 @@ withDefaults(
   <section-row>
     <row
       direction="row"
-      class="flex text-gray-500 items-center justify-between my-0 px-2"
+      class="flex text-gray-500 items-center justify-between my-0 px-0"
     >
       <h1>Ingredients ({{ ingredients.length }} items)</h1>
       <p>Quantity</p>
