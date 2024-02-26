@@ -20,4 +20,14 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['./enums'],
   },
+  image: {
+    providers: {
+      spoonacular: {
+        provider: '~/providers/spoonacular.ts',
+        options: {
+          baseURL: 'https://spoonacular.com',
+        },
+      },
+    },
+  },
 });

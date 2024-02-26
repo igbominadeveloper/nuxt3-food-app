@@ -12,4 +12,12 @@ enum InjectKey {
   Measure = 'measure',
 }
 
-export { InjectKey, NavigationLink, Measure };
+enum SpoonacularImage {
+  Ingredient = 'Ingredient',
+  Equipment = 'Equipment',
+  Recipe = 'Recipe',
+  GroceryProduct = 'GroceryProduct',
+  MenuItem = 'MenuItem',
+}
+
+export { InjectKey, Measure, NavigationLink, SpoonacularImage };
