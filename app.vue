@@ -67,13 +67,17 @@ const Instructions = resolveComponent('instructions');
       />
 
       <!-- ingredients -->
-      <component
-        :is="
-          activeLink === NavigationLink.Ingredients ? Ingredients : Instructions
-        "
-        :ingredients="recipe.extendedIngredients"
-        :instructions="recipe.analyzedInstructions"
-      />
+      <Transition name="slide-in">
+        <component
+          :is="
+            activeLink === NavigationLink.Ingredients
+              ? Ingredients
+              : Instructions
+          "
+          :ingredients="recipe.extendedIngredients"
+          :instructions="recipe.analyzedInstructions"
+        />
+      </Transition>
     </section>
 
     <pre class="font-mono">
@@ -81,4 +85,17 @@ const Instructions = resolveComponent('instructions');
     </pre>
   </div>
 </template>
-~/utils/enums
+
+<style scoped>
+.slide-in-enter-active,
+.slide-in-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.slide-in-enter-from,
+.slide-in-leave-to {
+  transition: all;
+  opacity: 0;
+  transform: translateX(50px);
+}
+</style>
