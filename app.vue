@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type Recipe } from '~/schema/recipe';
-import { NavigationLink } from '~/utils/enums';
+import { NavigationLink, Measure, InjectKey } from '~/utils/enums';
 
 const { data: recipe } = await useFetch<Recipe>('/api/recipes');
 
@@ -9,6 +9,9 @@ const links = [NavigationLink.Ingredients, NavigationLink.Instructions];
 
 const Ingredients = resolveComponent('ingredients');
 const Instructions = resolveComponent('instructions');
+
+// we want to have a button to toggle this value
+provide(InjectKey.Measure, Measure.US);
 </script>
 
 <template>

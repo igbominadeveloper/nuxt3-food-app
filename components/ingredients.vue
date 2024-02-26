@@ -1,16 +1,9 @@
 <script setup lang="ts">
-import { type Ingredient } from '~/schema/recipe';
-import { Measure } from '~/utils/enums';
+import { type Ingredient as IngredientType } from '~/schema/recipe';
 
-withDefaults(
-  defineProps<{
-    ingredients: Ingredient[];
-    measure?: Measure;
-  }>(),
-  {
-    measure: Measure.US,
-  }
-);
+defineProps<{
+  ingredients: IngredientType[];
+}>();
 </script>
 
 <template>
@@ -24,21 +17,11 @@ withDefaults(
     </row>
 
     <div class="flex flex-col gap-4 mt-2">
-      <row
-        direction="row"
-        :title="ingredient.originalName"
-        class="justify-between"
+      <ingredient
         v-for="(ingredient, index) in ingredients"
-        :key="ingredient.id"
-      >
-        <span class="max-w-[30ch]">
-          {{ index + 1 }}. {{ ingredient.originalName }}
-        </span>
-        <span
-          >{{ ingredient.measures[measure].amount }}
-          {{ ingredient.measures[measure].unitLong }}</span
-        >
-      </row>
+        :ingredient="ingredient"
+        :number="index + 1"
+      />
     </div>
 
     <pre>

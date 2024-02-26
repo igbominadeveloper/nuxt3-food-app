@@ -8,4 +8,8 @@ enum Measure {
   Metric = 'metric',
 }
 
-export { NavigationLink, Measure };
+enum InjectKey {
+  Measure = 'measure',
+}
+
+export { InjectKey, NavigationLink, Measure };
