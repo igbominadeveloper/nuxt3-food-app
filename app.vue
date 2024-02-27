@@ -10,8 +10,19 @@ const links = [NavigationLink.Ingredients, NavigationLink.Instructions];
 const Ingredients = resolveComponent('ingredients');
 const Instructions = resolveComponent('instructions');
 
-// we want to have a button to toggle this value
-provide(InjectKey.Measure, Measure.US);
+const measureRef = ref(Measure.US);
+const measureModel = computed({
+  get: () => measureRef.value === Measure.US,
+  set: (value: boolean) => {
+    if (value) {
+      measureRef.value = Measure.US;
+
+      return;
+    }
+    measureRef.value = Measure.Metric;
+  },
+});
+provide(InjectKey.Measure, measureRef);
 </script>
 
 <template>
@@ -41,9 +52,8 @@ provide(InjectKey.Measure, Measure.US);
       </section>
     </section-row>
 
-    <!-- Image -->
-
     <section-row class="lg:grid lg:grid-cols-2">
+      <!-- Image -->
       <section title="image-banner" class="w-full h-60 lg:h-80">
         <base-image
           :image-url="recipe.image"
@@ -66,15 +76,21 @@ provide(InjectKey.Measure, Measure.US);
     </section-row>
 
     <section class="max-w-3xl">
-      <navigation-links
-        :links="links"
-        :active-link="activeLink"
-        @selected="(link:NavigationLink) => activeLink = link"
-      />
+      <div class="flex justify-between items-center">
+        <navigation-links
+          :links="links"
+          :active-link="activeLink"
+          @selected="(link:NavigationLink) => activeLink = link"
+        />
+        <div class="flex justify-between items-center gap-2">
+          <UToggle v-model="measureModel" color="green" />{{ measureRef }}
+        </div>
+      </div>
 
       <!-- ingredients -->
       <Transition name="slide-in">
         <component
+          class="lg:px-0"
           :is="
             activeLink === NavigationLink.Ingredients
               ? Ingredients

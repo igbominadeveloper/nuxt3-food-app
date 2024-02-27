@@ -22,7 +22,7 @@ defineProps<{
 
     <row direction="row">
       <h3 class="font-normal">Name:</h3>
-      <p>{{ ingredient.name }}</p>
+      <p class="max-w-[40ch]">{{ ingredient.originalName }}</p>
     </row>
 
     <row direction="row">
