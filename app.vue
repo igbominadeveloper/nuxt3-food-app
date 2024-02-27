@@ -17,7 +17,7 @@ provide(InjectKey.Measure, Measure.US);
 <template>
   <div
     v-if="recipe"
-    class="max-w-md w-full bg-white mx-auto max-h-dvh overflow-x-hidden text-black"
+    class="w-full max-w-6xl bg-white mx-auto max-h-dvh overflow-x-hidden text-black"
   >
     <!-- Header -->
     <section
@@ -42,16 +42,19 @@ provide(InjectKey.Measure, Measure.US);
     </section-row>
 
     <!-- Image -->
-    <section title="image-banner" class="w-full h-60">
-      <base-image
-        :image-url="recipe.image"
-        alt="image-banner"
-        class="object-cover h-full w-full"
-      />
-    </section>
 
-    <section-row>
-      <div v-html="recipe.summary" class="max-w-[40ch]" />
+    <section-row class="lg:grid lg:grid-cols-2">
+      <section title="image-banner" class="w-full h-60 lg:h-80">
+        <base-image
+          :image-url="recipe.image"
+          alt="image-banner"
+          class="object-cover h-full w-full"
+        />
+      </section>
+
+      <section-row class="lg:my-0">
+        <div v-html="recipe.summary" class="xs:max-w-[40ch] sm:max-w-max" />
+      </section-row>
     </section-row>
 
     <section-row direction="row">
@@ -62,7 +65,7 @@ provide(InjectKey.Measure, Measure.US);
       />
     </section-row>
 
-    <section>
+    <section class="max-w-3xl">
       <navigation-links
         :links="links"
         :active-link="activeLink"

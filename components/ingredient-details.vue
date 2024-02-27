@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <article
-    class="min-w-80 shadow-md p-2 text-black dark:text-white text-sm flex flex-col"
+    class="min-w-80 shadow-md p-2 pb-4 text-black dark:text-white text-sm flex flex-col gap-2"
   >
     <div class="h-60 w-[45%] max-w-40 mx-auto">
       <BaseImage
