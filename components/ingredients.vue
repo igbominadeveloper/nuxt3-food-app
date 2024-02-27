@@ -12,11 +12,11 @@ defineProps<{
       direction="row"
       class="flex text-gray-500 items-center justify-between my-0"
     >
-      <h1>Ingredients ({{ ingredients.length }} items)</h1>
+      <h1>Ingredients ({{ ingredients?.length }} items)</h1>
       <p>Quantity</p>
     </row>
 
-    <div class="flex flex-col gap-4 mt-2">
+    <div class="flex flex-col gap-4 mt-2" v-if="ingredients?.length">
       <ingredient
         v-for="(ingredient, index) in ingredients"
         :ingredient="ingredient"

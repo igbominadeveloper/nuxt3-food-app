@@ -22,6 +22,16 @@ export default defineNuxtConfig({
       },
     },
   },
+  $production: {
+    nitro: {
+      storage: {
+        recipes: {
+          driver: 'fs',
+          base: 'recipes',
+        },
+      },
+    },
+  },
   imports: {
     dirs: ['./enums'],
   },
