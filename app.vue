@@ -43,7 +43,7 @@ const Instructions = resolveComponent('instructions');
       <section title="image-banner" class="w-full h-60 lg:h-80">
         <base-image
           :image-url="recipe.image"
-          alt="image-banner"
+          :alt="`Image of ${recipe.title}`"
           class="object-cover h-full w-full"
         />
       </section>
