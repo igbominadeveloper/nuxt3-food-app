@@ -1,9 +1,6 @@
 import { joinURL } from 'ufo';
 import type { ProviderGetImage } from '@nuxt/image';
-import { createOperationsGenerator } from '#image';
 import { SpoonacularImage } from '~/utils/enums';
-
-const operationsGenerator = createOperationsGenerator();
 
 const imageBasePathMap = new Map([
   [SpoonacularImage.Ingredient, 'cdn/ingredients_'],
@@ -16,21 +13,13 @@ const imageBasePathMap = new Map([
 export const getImage: ProviderGetImage = (
   src,
   {
-    modifiers = {},
-    baseURL,
+    baseURL = 'https://spoonacular.com',
     preset = SpoonacularImage.Ingredient,
     id = '',
     size = '500x500',
     type = '',
   } = {}
 ) => {
-  if (!baseURL) {
-    // also support runtime config
-    baseURL = useRuntimeConfig().public.spoonacularUrl;
-  }
-
-  const operations = operationsGenerator(modifiers);
-
   const fullSrcURL = computed(() => {
     const spoonacularImageBasePath = imageBasePathMap.get(
       preset as SpoonacularImage
@@ -47,9 +36,6 @@ export const getImage: ProviderGetImage = (
   });
 
   return {
-    url: joinURL(
-      baseURL,
-      fullSrcURL.value + (operations ? '?' + operations : '')
-    ),
+    url: joinURL(baseURL, fullSrcURL.value),
   };
 };
