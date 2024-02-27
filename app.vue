@@ -76,7 +76,7 @@ const Instructions = resolveComponent('instructions');
       <!-- ingredients -->
       <Transition name="slide-in">
         <component
-          class="lg:pr-0 min-h-44"
+          class="lg:pr-0 min-h-96"
           :is="
             activeLink === NavigationLink.Ingredients
               ? Ingredients
