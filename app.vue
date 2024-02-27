@@ -14,7 +14,7 @@ const Instructions = resolveComponent('instructions');
 <template>
   <div
     v-if="recipe"
-    class="w-full max-w-6xl bg-white mx-auto max-h-dvh overflow-x-hidden text-black"
+    class="w-full max-w-6xl min-h-dvh pb-10 bg-white mx-auto max-h-dvh overflow-x-hidden text-black"
   >
     <!-- Header -->
     <section
@@ -76,21 +76,17 @@ const Instructions = resolveComponent('instructions');
       <!-- ingredients -->
       <Transition name="slide-in">
         <component
-          class="lg:pr-0"
+          class="lg:pr-0 min-h-44"
           :is="
             activeLink === NavigationLink.Ingredients
               ? Ingredients
               : Instructions
           "
           :ingredients="recipe.extendedIngredients"
-          :instructions="recipe.analyzedInstructions"
+          :instruction="recipe.analyzedInstructions[0]"
         />
       </Transition>
     </section>
-
-    <pre class="font-mono">
-      {{ recipe }}
-    </pre>
   </div>
 </template>
 

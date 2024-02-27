@@ -23,10 +23,5 @@ defineProps<{
         :number="index + 1"
       />
     </div>
-
-    <pre>
-          {{ ingredients }}
-      </pre
-    >
   </section-row>
 </template>
