@@ -6,7 +6,7 @@ export default defineNuxtConfig({
       title: 'Recipe App',
     },
   },
-  modules: ['@nuxt/ui', '@nuxt/image'],
+  modules: ['@nuxt/ui', '@nuxt/image', '@vueuse/nuxt'],
   runtimeConfig: {
     spoonacular: {
       apiKey: '',

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type Recipe } from '~/schema/recipe';
-import { NavigationLink, Measure, InjectKey } from '~/utils/enums';
+import { NavigationLink } from '~/utils/enums';
 
 const { data: recipe } = await useFetch<Recipe>('/api/recipes');
 
@@ -9,20 +9,6 @@ const links = [NavigationLink.Ingredients, NavigationLink.Instructions];
 
 const Ingredients = resolveComponent('ingredients');
 const Instructions = resolveComponent('instructions');
-
-const measureRef = ref(Measure.US);
-const measureModel = computed({
-  get: () => measureRef.value === Measure.US,
-  set: (value: boolean) => {
-    if (value) {
-      measureRef.value = Measure.US;
-
-      return;
-    }
-    measureRef.value = Measure.Metric;
-  },
-});
-provide(InjectKey.Measure, measureRef);
 </script>
 
 <template>
@@ -82,15 +68,15 @@ provide(InjectKey.Measure, measureRef);
           :active-link="activeLink"
           @selected="(link:NavigationLink) => activeLink = link"
         />
-        <div class="flex justify-between items-center gap-2">
-          <UToggle v-model="measureModel" color="green" />{{ measureRef }}
-        </div>
+        <client-only>
+          <metric-toggle />
+        </client-only>
       </div>
 
       <!-- ingredients -->
       <Transition name="slide-in">
         <component
-          class="lg:px-0"
+          class="lg:pr-0"
           :is="
             activeLink === NavigationLink.Ingredients
               ? Ingredients

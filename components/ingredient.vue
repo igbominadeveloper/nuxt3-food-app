@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import type { Ingredient } from '~/schema/recipe';
-import { Measure, InjectKey } from '~/utils/enums';
 
 defineProps<{
   ingredient: Ingredient;
   number: number;
 }>();
 
-const measure = inject<Measure>(InjectKey.Measure) ?? Measure.US;
+const { measurement } = useMeasurement();
 </script>
 
 <template>
@@ -16,7 +15,7 @@ const measure = inject<Measure>(InjectKey.Measure) ?? Measure.US;
       {{ number }}.
       <UPopover mode="click" :popper="{ placement: 'top-start' }">
         <template #panel>
-          <ingredient-details :ingredient="ingredient" :measure="measure" />
+          <ingredient-details :ingredient="ingredient" :measure="measurement" />
         </template>
         <span class="group-hover:underline cursor-pointer">
           {{ ingredient.originalName }}
@@ -24,8 +23,8 @@ const measure = inject<Measure>(InjectKey.Measure) ?? Measure.US;
       </UPopover>
     </p>
     <p>
-      {{ ingredient.measures[measure].amount }}
-      {{ ingredient.measures[measure].unitLong }}
+      {{ ingredient.measures[measurement].amount }}
+      {{ ingredient.measures[measurement].unitLong }}
     </p>
   </row>
 </template>
