@@ -61,7 +61,7 @@ const Instructions = resolveComponent('instructions');
       />
     </section-row>
 
-    <section class="max-w-3xl">
+    <section class="max-w-3xl px-2">
       <div class="flex justify-between items-center">
         <navigation-links
           :links="links"
@@ -69,7 +69,7 @@ const Instructions = resolveComponent('instructions');
           @selected="(link:NavigationLink) => activeLink = link"
         />
         <client-only>
-          <metric-toggle />
+          <metric-toggle v-show="activeLink === NavigationLink.Ingredients" />
         </client-only>
       </div>
 
